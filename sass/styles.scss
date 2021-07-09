@@ -76,6 +76,10 @@ section .header {
 .section-border {
   border-bottom: 1px solid $keyline-color;
 }
+
+.title-text {
+  font-family: 'Shadows Into Light Two', cursive;
+}
 .tooltip {
   position: absolute;
   z-index: 1070;
