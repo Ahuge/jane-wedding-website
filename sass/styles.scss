@@ -84,6 +84,13 @@ section .header {
   font-size: 7em;
   color: #ffffff;
 }
+
+.title-text-dark {
+  // font-family: 'Shadows Into Light Two', cursive;
+  font-family: 'Dancing Script', cursive;
+  font-size: 7em;
+  color: $txt-primary;
+}
 .tooltip {
   position: absolute;
   z-index: 1070;
