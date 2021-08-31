@@ -583,7 +583,7 @@
         ceremonyButton.onclick = function() {
             docxModal.style.display = "block";
 
-            docxIframe.src = "https://docs.google.com/gview?url=" + window.location.hostname + "/uploads/information.docx" + "&embedded=true"
+            docxIframe.src = "https://docs.google.com/gview?url=" + window.location.origin + "/uploads/information.docx" + "&embedded=true"
             var scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
             var body = document.body;
             body.style.position = 'fixed';
