@@ -389,10 +389,15 @@
         <div id="mapBackground" alt="Image of google maps for the beach house restaurant" class="map-parallax"></div>
     </div>
     <div id="mapModal" class="modal">
-        <div id="map-modal-bg" class="map-modal-bg"></div>
-        <span class="map-modal-close">&times;</span>
+        <div id="map-modal-bg" class="modal-bg"></div>
+        <span class="modal-close" id="map-modal-close">&times;</span>
         <img class="modal-content" id="map-modal-image">
         <div id="mapCaption"></div>
+    </div>
+    <div id="docxModal" class="modal">
+        <div id="docx-modal-bg" class="modal-bg"></div>
+        <span class="modal-close" id="docx-modal-close">&times;</span>
+        <iframe id="docx-modal-iframe" class="modal-content"></iframe>
     </div>
         <div id="map-content-wrapper" class="container pointer-events-none">
             <div class="row">
@@ -556,7 +561,7 @@
 
         viewParkingBtn.onclick = img.onclick;
 
-        var span = document.getElementsByClassName("map-modal-close")[0];
+        var span = document.getElementById("map-modal-close")
         span.onclick = function() {
             modal.style.display = "none";
 
@@ -568,6 +573,36 @@
         }
 
         modalBG.onclick = span.onclick;
+
+        // DocX Modal
+        var docxModal = document.getElementById("docxModal")
+        var docxModalBG = document.getElementById("docx-modal-bg")
+        var ceremonyButton = document.getElementById("btn-download-document")
+        var docxIframe = document.getElementById("docx-modal-iframe")
+
+        ceremonyButton.onclick = function() {
+            docxModal.style.display = "block";
+
+            docxIframe.src = "https://docs.google.com/gview?url=" + window.location.hostname + "/uploads/information.docx" + "&embedded=true"
+            var scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
+            var body = document.body;
+            body.style.position = 'fixed';
+            body.style.top = `-${scrollY}`;
+        }
+
+        var docxSpan = document.getElementById("docx-modal-close");
+        docxSpan.onclick = function() {
+            docxModal.style.display = "none";
+
+            var body = document.body;
+            var scrollY = body.style.top;
+            body.style.position = '';
+            body.style.top = '';
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
+
+        docxModalBG.onclick = docxSpan.onclick;
+
         window.addEventListener('scroll', function() {
             document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
         })
@@ -595,14 +630,4 @@
 
 </i>
 <script src="https://unpkg.com/nanogram.js@3.0.3/dist/nanogram.iife.js"></script>
-	<script>
-		// const instagramParser = new Nanogram();
-                const instagramParser = window.Nanogram
-
-
-
-                instagramParser.getMediaByTag('sunset').then((media) => {
-                  console.log(media.profile.edge_owner_to_timeline_media.edges);
-                });
-	</script>
-</body></html>
+	</body></html>

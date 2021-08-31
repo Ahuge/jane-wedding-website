@@ -175,7 +175,7 @@ Map
   background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
 
-.map-modal-bg {
+.modal-bg {
   z-index: 1001;
   background-color: rgba(0, 0, 0, 0);
   display: block;
@@ -237,7 +237,7 @@ Map
 }
 
 /* The Close Button */
-.map-modal-close {
+.modal-close {
   position: fixed;
   top: 15px;
   right: 65px;
@@ -248,8 +248,8 @@ Map
   z-index: 1002;
 }
 
-.map-modal-close:hover,
-.map-modal-close:focus {
+.modal-close:hover,
+.modal-close:focus {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;

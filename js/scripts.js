@@ -166,10 +166,10 @@ $(document).ready(function () {
 
 
     /********************* Download Word Document *******************/
-    $('#btn-download-document').click(function (e) {
-        e.preventDefault(); // Stop the browser from following
-        window.location.href = 'uploads/information.docx'
-    });
+    // $('#btn-download-document').click(function (e) {
+    //     e.preventDefault(); // Stop the browser from following
+    //     window.location.href = 'uploads/information.docx'
+    // });
     /********************** Toggle Map Content **********************/
     $('#btn-show-map').click(function () {
         $('#mapBackground').trigger( "click" );
