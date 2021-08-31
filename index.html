@@ -377,7 +377,25 @@
             <h3 data-translatable="">How do I get there?</h3>
             <p data-translatable="">It's way easier than you think!</p>
         </div>
-	<div id="map-manual"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2599.999266620316!2d-123.18439598407498!3d49.3332326793368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54866e7362964a4f%3A0x757c2924db616af4!2sBeach%20House%20Restaurant!5e0!3m2!1sen!2sca!4v1625906678738!5m2!1sen!2sca" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+	<div id="map-manual">
+        <div id="mapBackground" alt="<p>
+Preferred Parking:
+- Bellevue Ave: North of the train tracks from 24th St to 25th St. ( 2 hour parking ends at 6pm)
+- 25th St and 24th St from Bellevue Ave north to Marine Dr.  ( 2 hour parking ends at 6pm)
+</p>
+<p>
+<u>Less Desirable Parking:<u>
+- Bellevue Ave: South of train tracks between 24th St and 25th St. ( 4 hour parking in effect until Midnight)
+- Bellevue Ave west of 25th St. No parking restrictions however the streets are very tight for parking.
+- Streets north of Marine Drive have no restrictions however you are dealing with a hill.
+</p>
+        " class="map-parallax"></div>
+    </div>
+    <div id="mapModal" class="modal">
+        <span class="map-modal-close">&times;</span>
+        <img class="modal-content" id="map-modal-image">
+        <div id="mapCaption"></div>
+    </div>
         <div id="map-content-wrapper" class="container pointer-events-none">
             <div class="row">
                 <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
@@ -433,57 +451,6 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-
-	<!-- Disable RSVPing
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <h3>RSVP</h3>
-                    <p data-translatable="">
-                        <span>We would greatly appreciate if you could RSVP before the <strong>1<sup>st</sup> of
-                                June</strong> 2019</span>
-                        <span>Merci de nous faire parvenir votre réponse avant le <strong>1<sup>er</sup> Juin</strong>
-                            2019</span>
-                        <span>Vi saremmo grati se poteste rispondere entro il <strong>1 Giugno</strong> 2019</span>
-                    </p>
-                    <form id="rsvp-form" class="rsvp-form" action="" method="POST">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-input-group">
-                                    <i class="fa fa-envelope"></i><input type="email" name="email" class="" placeholder="Your email" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-input-group">
-                                    <i class="fa fa-user"></i><input name="name" class="" placeholder="Your name" required="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-input-group">
-                                    <i class="fa fa-users"></i><input type="number" name="extras" class="" min="0" max="8" placeholder="Husband/Femme or bambini" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="form-input-group">
-                                    <i class="fa fa-fish"></i><input name="allergy" class="" placeholder="Allergy">
-                                </div>
-                            </div>
-			</div>
-                        <div class="row">
-                            <div class="col-md-12" id="alert-wrapper"></div>
-                        </div>
-                        <button class="btn-fill rsvp-btn" data-translatable="">
-                            <span>Yes, that's me!</span>
-                            <span>Oui, c'est moi !</span>
-                            <span>Si, sono io !</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-	-->
     </section>
     <section id="instagram" class="section-padding">
 	    <div class="container">
@@ -549,6 +516,26 @@
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
         ga('create', 'UA-60348896-3', 'auto');
         ga('send', 'pageview');
+    </script>
+    <!-- Map modal hotbox -->
+    <script>
+        var modal = document.getElementById("mapModal")
+        var img = document.getElementById("mapBackground")
+        var modalImg = document.getElementById("map-modal-image")
+        var captionText = document.getElementById("mapCaption")
+
+        img.onclick = function() {
+            modal.style.display = "block";
+            style = this.currentStyle || window.getComputedStyle(this, false),
+            backgroundImage = style.backgroundImage.slice(4, -1).replace(/"/g, "");
+            modalImg.src = backgroundImage;
+            captionText.innerHTML = this.alt;
+        }
+
+        var span = document.getElementsByClassName("map-modal-close")[0];
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
     </script>
     <!-- Progressive Web App -->
     <script>
