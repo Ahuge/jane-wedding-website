@@ -164,7 +164,7 @@ Map
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 1000; /* Sit on top */
   padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
@@ -175,12 +175,25 @@ Map
   background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
 
+.map-modal-bg {
+  z-index: 1001;
+  background-color: rgba(0, 0, 0, 0);
+  display: block;
+  position: fixed;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
 /* Modal Content (image) */
 .modal-content {
   margin: auto;
   display: block;
   width: 80%;
-  max-width: 700px;
+  z-index: 1002;
 }
 
 /* Caption of Modal Image */
@@ -188,7 +201,17 @@ Map
   margin: auto;
   display: block;
   width: 80%;
-  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+  z-index: 1002;
+}
+
+.map-p {
+  margin: auto;
+  display: block;
+  width: 80%;
   text-align: center;
   color: #ccc;
   padding: 10px 0;
@@ -215,13 +238,14 @@ Map
 
 /* The Close Button */
 .map-modal-close {
-  position: absolute;
+  position: fixed;
   top: 15px;
-  right: 35px;
+  right: 65px;
   color: #f1f1f1;
   font-size: 40px;
   font-weight: bold;
   transition: 0.3s;
+  z-index: 1002;
 }
 
 .map-modal-close:hover,
@@ -919,6 +943,7 @@ Google map
   margin-top: 40px;
   padding: 50px 60px;
   background: #fff;
+  filter: drop-shadow(10px 10px 30px rgba(0, 0, 0, 0.2));
   -webkit-transition: opacity 0.5s, visibility 0.6s, margin-top 0.5s;
   transition: opacity 0.5s, visibility 0.6s, margin-top 0.5s;
 }

@@ -294,6 +294,14 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-12">
+                    <h5>This is an "Unplugged Ceremony"</h5>
+                    Gary &amp; Jane kindly ask you to turn off your devices and refrain from taking photos or recording during the ceremony.
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
                     <div class="wp3">
                         <h5>Ceremony <span class="time">5:00pm</span></h5>
@@ -378,20 +386,10 @@
             <p data-translatable="">It's way easier than you think!</p>
         </div>
 	<div id="map-manual">
-        <div id="mapBackground" alt="<p>
-Preferred Parking:
-- Bellevue Ave: North of the train tracks from 24th St to 25th St. ( 2 hour parking ends at 6pm)
-- 25th St and 24th St from Bellevue Ave north to Marine Dr.  ( 2 hour parking ends at 6pm)
-</p>
-<p>
-<u>Less Desirable Parking:<u>
-- Bellevue Ave: South of train tracks between 24th St and 25th St. ( 4 hour parking in effect until Midnight)
-- Bellevue Ave west of 25th St. No parking restrictions however the streets are very tight for parking.
-- Streets north of Marine Drive have no restrictions however you are dealing with a hill.
-</p>
-        " class="map-parallax"></div>
+        <div id="mapBackground" alt="Image of google maps for the beach house restaurant" class="map-parallax"></div>
     </div>
     <div id="mapModal" class="modal">
+        <div id="map-modal-bg" class="map-modal-bg"></div>
         <span class="map-modal-close">&times;</span>
         <img class="modal-content" id="map-modal-image">
         <div id="mapCaption"></div>
@@ -422,8 +420,10 @@ Preferred Parking:
                         </div>
                         <div class="row text-center">
                             <div class="col-md-12" style="padding: 5px;">
-                                <a class="btn btn-fill btn-small" href="https://www.northshoretaxi.com/book-now/"><i class="fa fa-taxi"></i>&nbsp;&nbsp;Book Taxi</a>
+                                <a class="btn btn-accent btn-small" href="https://www.northshoretaxi.com/book-now/"><i class="fa fa-taxi"></i>&nbsp;&nbsp;Book Taxi</a>
                                 <a class="btn btn-accent btn-small" id="btn-show-map"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Show map</a>
+                                <a class="btn btn-fill btn-large" id="btn-view-parking" style="margin: 5px;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Parking Info</a>
+                                <a class="btn btn-fill btn-large" id="btn-download-document" style="margin: 5px;"><i class="fa fa-map-marker"></i>&nbsp;&nbsp;Ceremony Info</a>
                             </div>
                         </div>
                     </div>
@@ -523,17 +523,36 @@ Preferred Parking:
         var img = document.getElementById("mapBackground")
         var modalImg = document.getElementById("map-modal-image")
         var captionText = document.getElementById("mapCaption")
+        var modalBG = document.getElementById("map-modal-bg")
+        var viewParkingBtn = document.getElementById("btn-view-parking")
 
         img.onclick = function() {
             modal.style.display = "block";
-            style = this.currentStyle || window.getComputedStyle(this, false),
+            style = img.currentStyle || window.getComputedStyle(img, false),
             backgroundImage = style.backgroundImage.slice(4, -1).replace(/"/g, "");
+            console.log("Background Image: " + backgroundImage);
             modalImg.src = backgroundImage;
-            captionText.innerHTML = this.alt;
+            captionText.innerHTML = `
+            <p class="map-p">
+              <u>Preferred Parking:</u><br>
+              - Bellevue Ave: North of the train tracks from 24th St to 25th St. ( 2 hour parking ends at 6pm)<br>
+              - 25th St and 24th St from Bellevue Ave north to Marine Dr.  ( 2 hour parking ends at 6pm)<br>
+            </p>
+            <p class="map-p">
+              <u>Less Desirable Parking:</u><br>
+              - Bellevue Ave: South of train tracks between 24th St and 25th St. ( 4 hour parking in effect until Midnight)<br>
+              - Bellevue Ave west of 25th St. No parking restrictions however the streets are very tight for parking.<br>
+              - Streets north of Marine Drive have no restrictions however you are dealing with a hill.<br>
+            </p>`;
         }
+
+        viewParkingBtn.onclick = img.onclick;
 
         var span = document.getElementsByClassName("map-modal-close")[0];
         span.onclick = function() {
+            modal.style.display = "none";
+        }
+        modalBG.onclick = function() {
             modal.style.display = "none";
         }
     </script>

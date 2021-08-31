@@ -152,7 +152,7 @@ $(document).ready(function () {
             '</iframe>' +
 
             '<iframe src="//www.facebook.com/plugins/like.php?href=' + encodeURIComponent(window.location) + '&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=21&amp;appId=387405285345104&amp;width=150" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>';
-           
+
             //'<div class="g-plusone" data-size="medium"></div>';
 
         // '<iframe src="https://plusone.google.com/_/+1/fastbutton?bsv&amp;size=medium&amp;url=' + encodeURIComponent(window.location) + '" allowtransparency="true" frameborder="0" scrolling="no" title="+1" style="width:105px; height:21px;"></iframe>';
@@ -165,10 +165,16 @@ $(document).ready(function () {
     $('.player').YTPlayer();
 
 
+    /********************* Download Word Document *******************/
+    $('#btn-download-document').click(function (e) {
+        e.preventDefault(); // Stop the browser from following
+        window.location.href = 'uploads/information.docx'
+    });
     /********************** Toggle Map Content **********************/
     $('#btn-show-map').click(function () {
-        $('#map-content').toggleClass('toggle-map-content');
-        $('#btn-show-content').toggleClass('toggle-map-content');
+        $('#mapBackground').trigger( "click" );
+        //$('#map-content').toggleClass('toggle-map-content');
+        //$('#btn-show-content').toggleClass('toggle-map-content');
     });
     $('#btn-show-content').click(function () {
         $('#map-content').toggleClass('toggle-map-content');
