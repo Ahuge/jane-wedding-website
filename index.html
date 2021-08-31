@@ -525,6 +525,8 @@
         var captionText = document.getElementById("mapCaption")
         var modalBG = document.getElementById("map-modal-bg")
         var viewParkingBtn = document.getElementById("btn-view-parking")
+        var body = document.body;
+        var bodyHeight = body.style.top;
 
         img.onclick = function() {
             modal.style.display = "block";
@@ -544,6 +546,12 @@
               - Bellevue Ave west of 25th St. No parking restrictions however the streets are very tight for parking.<br>
               - Streets north of Marine Drive have no restrictions however you are dealing with a hill.<br>
             </p>`;
+
+
+            var scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
+            var body = document.body;
+            body.style.position = 'fixed';
+            body.style.top = `-${scrollY}`;
         }
 
         viewParkingBtn.onclick = img.onclick;
@@ -551,10 +559,18 @@
         var span = document.getElementsByClassName("map-modal-close")[0];
         span.onclick = function() {
             modal.style.display = "none";
+
+            var body = document.body;
+            var scrollY = body.style.top;
+            body.style.position = '';
+            body.style.top = '';
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
         }
-        modalBG.onclick = function() {
-            modal.style.display = "none";
-        }
+
+        modalBG.onclick = span.onclick;
+        window.addEventListener('scroll', function() {
+            document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
+        })
     </script>
     <!-- Progressive Web App -->
     <script>
